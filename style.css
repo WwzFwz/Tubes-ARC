@@ -5,3 +5,12 @@
 #Primary {
     background-color: #1679AB;
 }
+#link-tele {
+    color: black;
+    text-decoration: none;
+}
+
+
+.container.col-xxl-12.px-5.py-5 {
+    height: 89vh;
+}
