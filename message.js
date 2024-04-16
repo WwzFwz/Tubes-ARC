@@ -33,4 +33,4 @@ setInterval(() => {
         j = 6; //Akan diisi dengan nilai PERUBAHAN variabel cuacanya
 ;
     cekDanKirimPesan(a,b,c,d,e,f,g,h,i,j);
-}, 3600000); //
+}, 3600); //
