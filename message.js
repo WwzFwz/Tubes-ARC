@@ -29,7 +29,7 @@ setInterval(() => {
         f = 5,
         g = 6,
         h = 7,
-        i = 10,
+        i = 6,
         j = 6; //Akan diisi dengan nilai PERUBAHAN variabel cuacanya
 ;
     cekDanKirimPesan(a,b,c,d,e,f,g,h,i,j);
