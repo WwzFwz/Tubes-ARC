@@ -29,11 +29,9 @@ const WeatherData = sequelize.define('weather_data', {
     pressure_surface: DataTypes.FLOAT
 });
 
-// Fungsi untuk mengambil data cuaca dari database dan menyimpannya dalam array datas
-async function fetchDataAndSaveToArray() {
+// Fungsi untuk mengambil data cuaca dari database berdasarkan nama kota dan menyimpannya dalam array datas
+async function fetchDataAndSaveToArray(city) {
     try {
-        const city = "Jakarta"; // Ubah sesuai kota yang diinginkan
-
         console.log(`Mengambil data cuaca di ${city} dari database...`);
         const data = await WeatherData.findOne({ where: { location_name: city }, order: [['timestamp', 'DESC']] });
 
@@ -54,11 +52,14 @@ async function fetchDataAndSaveToArray() {
 // Array untuk menyimpan data cuaca
 let datas = [];
 
-// Panggil fungsi untuk mengambil data cuaca dari database dan menyimpannya dalam array datas
-fetchDataAndSaveToArray()
-    .then(() => {
+// Panggil fungsi untuk mengambil data cuaca dari database dan menyimpannya dalam array datas saat formulir dikirim
+document.getElementById('searchForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Mencegah pengiriman formulir yang normal
+    const cityName = document.getElementById('cityName').value;
+    if(cityName.trim() !== '') {
+        await fetchDataAndSaveToArray(cityName);
         console.log("Proses pengambilan data selesai");
-    })
-    .catch(error => {
-        console.error("Gagal dalam proses pengambilan data:", error);
-    });
+    } else {
+        console.error("Nama kota tidak boleh kosong!");
+    }
+});
